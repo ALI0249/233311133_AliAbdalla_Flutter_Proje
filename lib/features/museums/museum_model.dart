@@ -37,6 +37,7 @@ class Exhibition {
   final DateTime? startDate;
   final DateTime? endDate;
   final String? description;
+  final String? imageUrl;
 
   const Exhibition({
     required this.id,
@@ -45,6 +46,7 @@ class Exhibition {
     this.startDate,
     this.endDate,
     this.description,
+    this.imageUrl,
   });
 
   factory Exhibition.fromMap(Map<String, dynamic> map) {
@@ -59,6 +61,7 @@ class Exhibition {
           ? null
           : DateTime.parse(map['end_date'] as String),
       description: map['description'] as String?,
+      imageUrl: map['image_url'] as String?,
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/theme.dart';
+import '../../shared/widgets/remote_image.dart';
 import '../museums/museum_service.dart';
 import 'artifact_model.dart';
 import 'artifact_service.dart';
@@ -116,8 +116,14 @@ class _ArtifactManagementScreenState extends State<ArtifactManagementScreen> {
               final a = items[i];
               return Card(
                 child: ListTile(
-                  leading: const Icon(Icons.auto_awesome,
-                      color: AppTheme.primary),
+                  leading: SizedBox(
+                    width: 48,
+                    height: 48,
+                    child: RemoteImage(
+                      url: a.imageUrl,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
                   title: Text(a.name,
                       style: const TextStyle(fontWeight: FontWeight.w600)),
                   subtitle: Text('${a.category}'

@@ -174,27 +174,54 @@ class _MuseumDetailScreenState extends State<MuseumDetailScreen> {
           )
         else
           ...exhibitions.map(
-            (e) => Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
+            (e) => Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Card(
+                clipBehavior: Clip.antiAlias,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(e.title,
-                        style: const TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w600)),
-                    if (e.startDate != null && e.endDate != null) ...[
-                      const SizedBox(height: 4),
-                      Text(
-                        '${fmt.format(e.startDate!)} – ${fmt.format(e.endDate!)}',
-                        style: const TextStyle(
-                            color: AppTheme.textMuted, fontSize: 12),
+                    AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: RemoteImage(
+                        url: e.imageUrl,
+                        fallbackIcon: Icons.image,
                       ),
-                    ],
-                    if (e.description != null) ...[
-                      const SizedBox(height: 8),
-                      Text(e.description!),
-                    ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(e.title,
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700)),
+                          if (e.startDate != null && e.endDate != null) ...[
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                const Icon(Icons.event,
+                                    size: 14,
+                                    color: AppTheme.textMuted),
+                                const SizedBox(width: 4),
+                                Text(
+                                  '${fmt.format(e.startDate!)} – ${fmt.format(e.endDate!)}',
+                                  style: const TextStyle(
+                                      color: AppTheme.textMuted,
+                                      fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ],
+                          if (e.description != null) ...[
+                            const SizedBox(height: 8),
+                            Text(e.description!,
+                                style: const TextStyle(height: 1.4)),
+                          ],
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
