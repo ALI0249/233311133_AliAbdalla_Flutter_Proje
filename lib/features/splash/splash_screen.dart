@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../../core/theme.dart';
 
+/// Shown while [AuthState] is loading the profile. The router redirects away
+/// from this screen as soon as auth state stabilises.
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
