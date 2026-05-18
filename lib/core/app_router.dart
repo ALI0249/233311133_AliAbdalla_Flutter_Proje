@@ -1,7 +1,11 @@
 import 'package:go_router/go_router.dart';
 
+import '../features/admin/admin_panel_screen.dart';
+import '../features/admin/staff_management_screen.dart';
+import '../features/admin/system_logs_screen.dart';
 import '../features/artifacts/artifact_detail_screen.dart';
 import '../features/artifacts/artifact_list_screen.dart';
+import '../features/artifacts/artifact_management_screen.dart';
 import '../features/auth/auth_state.dart';
 import '../features/auth/login_screen.dart';
 import '../features/auth/register_screen.dart';
@@ -9,7 +13,6 @@ import '../features/home/home_screen.dart';
 import '../features/museums/museum_detail_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../features/splash/splash_screen.dart';
-import '../features/staff/_staff_placeholders.dart';
 import '../features/staff/staff_dashboard_screen.dart';
 import '../features/staff/stats_screen.dart';
 import '../features/staff/ticket_scan_screen.dart';
@@ -71,18 +74,15 @@ GoRouter buildRouter(AuthState auth) {
       GoRoute(
           path: '/staff/stats', builder: (_, _) => const StatsScreen()),
       GoRoute(
-        path: '/staff/artifacts',
-        builder: (_, _) => const StaffPlaceholderScreen(
-            title: 'Eser Yönetimi',
-            commitNote: 'Eser CRUD ekranı bir sonraki adımda eklenecek.'),
-      ),
+          path: '/staff/artifacts',
+          builder: (_, _) => const ArtifactManagementScreen()),
+      GoRoute(path: '/admin', builder: (_, _) => const AdminPanelScreen()),
       GoRoute(
-        path: '/admin',
-        builder: (_, _) => const StaffPlaceholderScreen(
-            title: 'Yönetici Paneli',
-            commitNote:
-                'Personel yönetimi, gelişmiş istatistikler ve sistem logları bir sonraki adımda eklenecek.'),
-      ),
+          path: '/admin/staff',
+          builder: (_, _) => const StaffManagementScreen()),
+      GoRoute(
+          path: '/admin/logs',
+          builder: (_, _) => const SystemLogsScreen()),
       GoRoute(path: '/profile', builder: (_, _) => const ProfileScreen()),
     ],
     redirect: (context, state) {
