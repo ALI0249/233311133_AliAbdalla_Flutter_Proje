@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/theme.dart';
+import '../../shared/widgets/remote_image.dart';
 import '../artifacts/artifact_model.dart';
 import '../artifacts/artifact_service.dart';
 import '../auth/auth_state.dart';
@@ -123,53 +124,52 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           // hero / museum card
           Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: RemoteImage(
+                      url: m.imageUrl, fallbackIcon: Icons.museum),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        width: 56,
-                        height: 56,
-                        decoration: BoxDecoration(
-                          color: AppTheme.primary.withValues(alpha: 0.12),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: const Icon(Icons.museum,
-                            color: AppTheme.primary, size: 30),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                      Text(m.name,
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w700)),
+                      if (m.city != null) ...[
+                        const SizedBox(height: 4),
+                        Row(
                           children: [
-                            Text(m.name,
+                            const Icon(Icons.location_on_outlined,
+                                size: 14, color: AppTheme.textMuted),
+                            const SizedBox(width: 4),
+                            Text(m.city!,
                                 style: const TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.w700)),
-                            if (m.city != null)
-                              Text(m.city!,
-                                  style: const TextStyle(
-                                      color: AppTheme.textMuted, fontSize: 13)),
+                                    color: AppTheme.textMuted,
+                                    fontSize: 13)),
                           ],
                         ),
+                      ],
+                      if (m.description != null) ...[
+                        const SizedBox(height: 12),
+                        Text(m.description!,
+                            style: const TextStyle(height: 1.4)),
+                      ],
+                      const SizedBox(height: 12),
+                      TextButton.icon(
+                        onPressed: () => context.go('/museum/${m.id}'),
+                        icon: const Icon(Icons.info_outline),
+                        label: const Text('Müze Hakkında Detaylar'),
                       ),
                     ],
                   ),
-                  if (m.description != null) ...[
-                    const SizedBox(height: 12),
-                    Text(m.description!,
-                        style: const TextStyle(height: 1.4)),
-                  ],
-                  const SizedBox(height: 12),
-                  TextButton.icon(
-                    onPressed: () => context.go('/museum/${m.id}'),
-                    icon: const Icon(Icons.info_outline),
-                    label: const Text('Müze Hakkında Detaylar'),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 16),
@@ -285,15 +285,13 @@ class _ArtifactPreviewCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: 56,
-                height: 56,
-                decoration: BoxDecoration(
-                  color: AppTheme.accent.withValues(alpha: 0.18),
+              SizedBox(
+                width: 64,
+                height: 64,
+                child: RemoteImage(
+                  url: artifact.imageUrl,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Icon(Icons.auto_awesome,
-                    color: AppTheme.primary, size: 26),
               ),
               const SizedBox(width: 12),
               Expanded(

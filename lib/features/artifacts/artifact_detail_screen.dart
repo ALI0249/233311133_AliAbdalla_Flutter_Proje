@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../core/theme.dart';
+import '../../shared/widgets/remote_image.dart';
 import 'artifact_model.dart';
 import 'artifact_service.dart';
 
@@ -66,22 +67,14 @@ class _ArtifactDetailScreenState extends State<ArtifactDetailScreen> {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        // Hero image (placeholder for now — image_url may be null)
-        Container(
-          height: 220,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                AppTheme.primary.withValues(alpha: 0.6),
-                AppTheme.accent.withValues(alpha: 0.5),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+        // Hero image
+        SizedBox(
+          height: 240,
+          width: double.infinity,
+          child: RemoteImage(
+            url: a.imageUrl,
             borderRadius: BorderRadius.circular(16),
           ),
-          alignment: Alignment.center,
-          child: const Icon(Icons.auto_awesome, size: 80, color: Colors.white),
         ),
         const SizedBox(height: 16),
         Text(a.name,

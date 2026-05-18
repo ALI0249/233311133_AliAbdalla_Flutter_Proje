@@ -5,6 +5,7 @@ class Museum {
   final String? address;
   final String? openingHours;
   final String? description;
+  final String? imageUrl;
 
   const Museum({
     required this.id,
@@ -13,6 +14,7 @@ class Museum {
     this.address,
     this.openingHours,
     this.description,
+    this.imageUrl,
   });
 
   factory Museum.fromMap(Map<String, dynamic> map) {
@@ -23,6 +25,7 @@ class Museum {
       address: map['address'] as String?,
       openingHours: map['opening_hours'] as String?,
       description: map['description'] as String?,
+      imageUrl: map['image_url'] as String?,
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/theme.dart';
+import '../../shared/widgets/remote_image.dart';
 import 'artifact_model.dart';
 import 'artifact_service.dart';
 
@@ -172,15 +173,13 @@ class _ArtifactRow extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  color: AppTheme.accent.withValues(alpha: 0.18),
+              SizedBox(
+                width: 64,
+                height: 64,
+                child: RemoteImage(
+                  url: artifact.imageUrl,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Icon(Icons.auto_awesome,
-                    color: AppTheme.primary, size: 28),
               ),
               const SizedBox(width: 12),
               Expanded(

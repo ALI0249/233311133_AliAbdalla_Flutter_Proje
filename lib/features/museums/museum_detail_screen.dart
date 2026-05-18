@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../core/theme.dart';
+import '../../shared/widgets/remote_image.dart';
 import 'museum_model.dart';
 import 'museum_service.dart';
 
@@ -110,54 +111,52 @@ class _MuseumDetailScreenState extends State<MuseumDetailScreen> {
       padding: const EdgeInsets.all(16),
       children: [
         Card(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AspectRatio(
+                aspectRatio: 16 / 9,
+                child: RemoteImage(
+                    url: m.imageUrl, fallbackIcon: Icons.museum),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 64,
-                      height: 64,
-                      decoration: BoxDecoration(
-                        color: AppTheme.primary.withValues(alpha: 0.12),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Icon(Icons.museum,
-                          color: AppTheme.primary, size: 32),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    Text(m.name,
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w700)),
+                    if (m.city != null) ...[
+                      const SizedBox(height: 4),
+                      Row(
                         children: [
-                          Text(m.name,
+                          const Icon(Icons.location_on_outlined,
+                              size: 16, color: AppTheme.textMuted),
+                          const SizedBox(width: 4),
+                          Text(m.city!,
                               style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w700)),
-                          if (m.city != null) ...[
-                            const SizedBox(height: 4),
-                            Text(m.city!,
-                                style: const TextStyle(
-                                    color: AppTheme.textMuted)),
-                          ],
+                                  color: AppTheme.textMuted)),
                         ],
                       ),
-                    ),
+                    ],
+                    const Divider(height: 24),
+                    if (m.address != null)
+                      _detailRow(Icons.location_on_outlined, 'Adres',
+                          m.address!),
+                    if (m.openingHours != null)
+                      _detailRow(Icons.schedule, 'Çalışma saatleri',
+                          m.openingHours!),
+                    if (m.description != null) ...[
+                      const SizedBox(height: 8),
+                      Text(m.description!,
+                          style: const TextStyle(height: 1.4)),
+                    ],
                   ],
                 ),
-                const Divider(height: 24),
-                if (m.address != null)
-                  _detailRow(Icons.location_on_outlined, 'Adres', m.address!),
-                if (m.openingHours != null)
-                  _detailRow(Icons.schedule, 'Çalışma saatleri', m.openingHours!),
-                if (m.description != null) ...[
-                  const SizedBox(height: 8),
-                  Text(m.description!,
-                      style: const TextStyle(height: 1.4)),
-                ],
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         const SizedBox(height: 16),
