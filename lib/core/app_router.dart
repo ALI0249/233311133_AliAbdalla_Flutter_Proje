@@ -11,6 +11,7 @@ import '../features/profile/profile_screen.dart';
 import '../features/splash/splash_screen.dart';
 import '../features/staff/_staff_placeholders.dart';
 import '../features/staff/staff_dashboard_screen.dart';
+import '../features/staff/stats_screen.dart';
 import '../features/staff/ticket_scan_screen.dart';
 import '../features/tickets/my_tickets_screen.dart';
 import '../features/tickets/ticket_purchase_screen.dart';
@@ -68,11 +69,7 @@ GoRouter buildRouter(AuthState auth) {
           path: '/staff/scan',
           builder: (_, _) => const TicketScanScreen()),
       GoRoute(
-        path: '/staff/stats',
-        builder: (_, _) => const StaffPlaceholderScreen(
-            title: 'İstatistikler',
-            commitNote: 'Grafikli istatistikler bir sonraki adımda eklenecek.'),
-      ),
+          path: '/staff/stats', builder: (_, _) => const StatsScreen()),
       GoRoute(
         path: '/staff/artifacts',
         builder: (_, _) => const StaffPlaceholderScreen(
