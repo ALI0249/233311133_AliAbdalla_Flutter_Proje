@@ -1,0 +1,39 @@
+name: muzem
+description: "Muzem - Muze Bilet Takip Sistemi"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # Backend
+  supabase_flutter: ^2.8.0
+
+  # State management
+  provider: ^6.1.2
+
+  # Routing
+  go_router: ^14.6.2
+
+  # QR
+  qr_flutter: ^4.1.0
+  mobile_scanner: ^5.2.3
+
+  # Charts (staff dashboard)
+  fl_chart: ^0.69.0
+
+  # Date formatting
+  intl: ^0.20.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
