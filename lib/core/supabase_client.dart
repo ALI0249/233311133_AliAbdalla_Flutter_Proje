@@ -7,8 +7,9 @@ class SupabaseConfig {
   // The anon key is safe to ship in client code; Row Level Security
   // policies are what protect the data.
   // ============================================================
-  static const String url = 'https://YOUR-PROJECT-ID.supabase.co';
-  static const String anonKey = 'YOUR-SUPABASE-ANON-KEY';
+  static const String url = 'https://hnlzbagediyjzcygeegg.supabase.co';
+  static const String anonKey =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhubHpiYWdlZGl5anpjeWdlZWdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxMjQyODAsImV4cCI6MjA5NDcwMDI4MH0.St8-zNBlHUKpTI7LUmWdkI4PoLpGvCmO6tsJ7dRIedM';
 }
 
 Future<void> initSupabase() async {
