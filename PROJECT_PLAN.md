@@ -1,8 +1,24 @@
 # PROJECT_PLAN — Mobil Programlama Final Projesi (Flutter + Supabase)
 
-> **Status:** Draft — awaiting Ali's approval. No Flutter code will be written until this and the top-level `PLAN.md` are approved.
-> **Last updated:** 2026-05-18
+> **Status:** Locked in. Design pivoted at commit 4 — see § Design Evolution.
+> **Last updated:** 2026-05-18 (pivot day)
 > **Deadline:** 22 Mayıs 2026, 23:59 (hard cutoff)
+
+## Design Evolution (commit 4 pivot)
+
+The initial plan (commits 1-3) described a **multi-museum ticketing app** with 2 roles (Ziyaretçi + Personel). After commit 3 we discussed the original vision and pivoted to a **single-museum management app** that's a better fit for the project name "Müze Bilet Takip Sistemi" and a stronger sözlü-defense story.
+
+**Changes from commit 4 onward:**
+- The system manages **one museum: Topkapı Sarayı Müzesi** (multi-museum data model retained for scalability, demo focuses on one).
+- **Three roles**: Ziyaretçi (visitor) + Personel (staff) + Admin (staff manager + super-stats).
+- New **artifacts (eserler)** entity: 12 seeded pieces (Topkapı Hancer-i, Kaşıkçı Elması, Hırka-i Saadet, etc.) each with category (Sanat/Tarih/Heykel/Arkeoloji/Etnografya/El Yazması), era, description, location in museum, and QR code.
+- New **occupancy** view: real-time "% full" gauge visible on the visitor home AND staff/admin dashboards.
+- New **visits** entity: tracks who entered the museum today; occupancy = count of visits with `exited_at is null`.
+- Admin = personel + staff CRUD + global stats + system logs view.
+- Paid tickets retained — 5 types: Yetişkin/Öğrenci/Çocuk/Grup/Müzekart.
+- Soft occupancy cap (display only, never blocks ticket purchase).
+
+The §s below (roles, features, screens, schema) reflect the **pivoted** design.
 
 ---
 

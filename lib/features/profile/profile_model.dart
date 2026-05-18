@@ -13,8 +13,12 @@ class Profile {
     required this.createdAt,
   });
 
+  bool get isAdmin => role == 'admin';
   bool get isPersonel => role == 'personel';
   bool get isZiyaretci => role == 'ziyaretci';
+
+  /// Admin gets all personel powers + their own admin-only screens.
+  bool get isStaffOrAdmin => isPersonel || isAdmin;
 
   factory Profile.fromMap(Map<String, dynamic> map) {
     return Profile(

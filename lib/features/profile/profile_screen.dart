@@ -18,10 +18,10 @@ class ProfileScreen extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            if (profile?.isPersonel ?? false) {
+            if (profile?.isStaffOrAdmin ?? false) {
               context.go('/staff');
             } else {
-              context.go('/museums');
+              context.go('/home');
             }
           },
         ),

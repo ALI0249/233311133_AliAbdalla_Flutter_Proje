@@ -14,7 +14,7 @@ class TicketsPlaceholderScreen extends StatelessWidget {
         title: Text(title),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.go('/museums'),
+          onPressed: () => context.go('/home'),
         ),
       ),
       body: Center(

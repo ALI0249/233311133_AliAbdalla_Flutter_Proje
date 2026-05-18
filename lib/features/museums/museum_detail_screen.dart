@@ -57,7 +57,7 @@ class _MuseumDetailScreenState extends State<MuseumDetailScreen> {
         title: Text(_museum?.name ?? 'Müze'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.go('/museums'),
+          onPressed: () => context.go('/home'),
         ),
       ),
       body: _buildBody(),
@@ -69,8 +69,7 @@ class _MuseumDetailScreenState extends State<MuseumDetailScreen> {
                 child: ElevatedButton.icon(
                   icon: const Icon(Icons.confirmation_number),
                   label: const Text('Bilet Al'),
-                  onPressed: () =>
-                      context.go('/tickets/buy?museumId=${widget.museumId}'),
+                  onPressed: () => context.go('/tickets/buy'),
                 ),
               ),
             ),
