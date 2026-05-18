@@ -37,18 +37,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _error = null;
     });
     try {
-      await _auth.signUp(
+      final response = await _auth.signUp(
         email: _email.text.trim(),
         password: _password.text,
         fullName: _name.text.trim(),
         phone: _phone.text.trim(),
       );
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('Kayıt başarılı. Giriş yapılıyor...')),
-      );
-      // Router redirects automatically once auth state updates.
+
+      if (response.session != null) {
+        // Confirmations are OFF — Supabase signed the user in, router redirects.
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Kayıt başarılı. Yönlendiriliyor...')),
+        );
+      } else {
+        // Confirmations are ON — no session yet. Send the user to login
+        // with a clear message instead of leaving them stuck on register.
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+                'Kayıt başarılı. E-posta onayından sonra giriş yapabilirsiniz.'),
+            duration: Duration(seconds: 4),
+          ),
+        );
+        await Future.delayed(const Duration(seconds: 1));
+        if (mounted) context.go('/login');
+      }
     } catch (e) {
       setState(() => _error = 'Kayıt başarısız: $e');
     } finally {

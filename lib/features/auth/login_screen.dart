@@ -48,6 +48,11 @@ class _LoginScreenState extends State<LoginScreen> {
   String _friendly(Object e) {
     final s = e.toString();
     if (s.contains('Invalid login')) return 'E-posta veya şifre hatalı.';
+    if (s.contains('Email not confirmed') || s.contains('email_not_confirmed')) {
+      return 'E-posta henüz onaylanmamış. '
+          'Supabase panelinden bu kullanıcıyı manuel onaylayın '
+          'veya e-posta onayını kapatın.';
+    }
     if (s.contains('Network')) return 'İnternet bağlantısı yok.';
     return s;
   }
