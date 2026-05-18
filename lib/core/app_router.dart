@@ -10,7 +10,8 @@ import '../features/museums/museum_detail_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../features/splash/splash_screen.dart';
 import '../features/staff/staff_dashboard_screen.dart';
-import '../features/tickets/_placeholder_screens.dart';
+import '../features/tickets/my_tickets_screen.dart';
+import '../features/tickets/ticket_purchase_screen.dart';
 
 /// Role-aware app router (single-museum).
 ///
@@ -56,16 +57,10 @@ GoRouter buildRouter(AuthState auth) {
         builder: (_, state) =>
             ArtifactDetailScreen(artifactId: state.pathParameters['id']!),
       ),
+      GoRoute(path: '/tickets', builder: (_, _) => const MyTicketsScreen()),
       GoRoute(
-        path: '/tickets',
-        builder: (_, _) =>
-            const TicketsPlaceholderScreen(title: 'Biletlerim'),
-      ),
-      GoRoute(
-        path: '/tickets/buy',
-        builder: (_, _) =>
-            const TicketsPlaceholderScreen(title: 'Bilet Al'),
-      ),
+          path: '/tickets/buy',
+          builder: (_, _) => const TicketPurchaseScreen()),
       GoRoute(path: '/staff', builder: (_, _) => const StaffDashboardScreen()),
       GoRoute(path: '/profile', builder: (_, _) => const ProfileScreen()),
     ],
