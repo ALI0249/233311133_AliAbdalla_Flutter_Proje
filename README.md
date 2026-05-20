@@ -7,8 +7,8 @@
 | **Öğrenci** | Ali ABDALLA |
 | **Numara** | 233311133 |
 | **Üniversite** | Selçuk Üniversitesi, Teknoloji Fakültesi, Bilgisayar Mühendisliği |
-| **Ders** | Mobil Programlama |
-| **Yardımcı Öğretim Elemanı** | Arş. Gör. Musa DOĞAN |
+
+
 
 ---
 
@@ -94,36 +94,7 @@ Yukarıdaki tabloya göre 3 kullanıcıyı kayıt ekranından oluştur, sonra Su
 
 ---
 
-## Ekran Görüntüleri
 
-(Aşağıdaki ekran görüntüleri teslim öncesinde gerçek cihaz/emülatör üzerinden alınmalıdır. Şu an placeholder durumdadır.)
-
-| Ekran | Görüntü |
-|---|---|
-| Giriş / Kayıt | `docs/screenshots/01_login.png` |
-| Ziyaretçi Ana Sayfa (Doluluk + Öne Çıkan Eserler) | `docs/screenshots/02_home.png` |
-| Eserler Listesi | `docs/screenshots/03_artifacts.png` |
-| Eser Detay (QR) | `docs/screenshots/04_artifact_detail.png` |
-| Bilet Al | `docs/screenshots/05_buy_ticket.png` |
-| Biletlerim (QR) | `docs/screenshots/06_my_tickets.png` |
-| Personel QR Tara | `docs/screenshots/07_scan.png` |
-| Personel İstatistikler | `docs/screenshots/08_stats.png` |
-| Yönetici Paneli | `docs/screenshots/09_admin.png` |
-| Personel Yönetimi | `docs/screenshots/10_staff_mgmt.png` |
-| Sistem Logları | `docs/screenshots/11_logs.png` |
 
 ---
 
-## Sözlü Sınav İçin Notlar
-
-- Mimari katmanlar: `core/` (Supabase init, theme, logger, router), `features/<X>/` her özellik için model + service + screens. Tek sorumluluk net.
-- RLS politikaları SQL migration'larında. Her tablo için (a) okuma, (b) yazma izinleri rol kontrolüyle ayrılmış.
-- QR güvenliği: ticket QR'ı `ticket-<uuid>` formatında. RLS sayesinde başka birinin QR ID'sini tahmin etse bile sadece personel/admin RPC çağrısı yapabiliyor.
-- Doluluk hesabı: `occupancy` view'i, `visits` tablosunda bugün giriş yapıp henüz çıkmamış kayıtları sayıyor. View, RPC ile birlikte tutarlı işlem garantiliyor.
-- `process_ticket_scan` RPC'si transaction altında çalışıyor (`SECURITY DEFINER`); aynı bileti iki kez taramak girişi/çıkışı doğru sırayla yönetiyor.
-
----
-
-## Geliştirici
-
-Bu proje **bireysel** olarak geliştirilmiştir. Kod paylaşılmamıştır.
